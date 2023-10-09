@@ -27,6 +27,10 @@
     </div>
     <div class="w-full">
         {{-- formulario --}}
+        <form class="mb-4">
+            <input wire:model.live="search" type="text" placeholder="Buscar..."
+                class="bg-slate-800 border-0 rounded-md w-1/3 p-3 text-white/60 text-xs">
+        </form>
 
         @foreach ($threads as $thread)
             <div class="rounded-md bg-gradient-to-r from-slate-800 to-slate-900 hover:to-slate-800 mb-4">
