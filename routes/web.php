@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\ShowThread;
 use App\Livewire\ShowThreads;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', ShowThreads::class)->middleware('auth')->name('dashboard');
+Route::get('/thread/{thread}', ShowThread::class)->middleware('auth')->name('thread');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
