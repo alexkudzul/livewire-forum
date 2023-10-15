@@ -18,4 +18,10 @@ class Reply extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // Una respuesta tiene muchas respuestas hijas
+    public function repliesChilds()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }
