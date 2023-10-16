@@ -34,7 +34,9 @@
                             class="hover:text-white">Responder</a>
                     @endif
 
-                    <a href="#" wire:click.prevent="$toggle('is_editing')" class="hover:text-white">Editar</a>
+                    @can('update', $reply)
+                        <a href="#" wire:click.prevent="$toggle('is_editing')" class="hover:text-white">Editar</a>
+                    @endcan
                 </p>
             </div>
         </div>
