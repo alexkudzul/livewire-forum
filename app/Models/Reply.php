@@ -10,6 +10,7 @@ class Reply extends Model
     use HasFactory;
 
     protected $fillable = [
+        'reply_id',
         'thread_id',
         'body'
     ];
@@ -18,6 +19,12 @@ class Reply extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function thread()
+    {
+        return $this->belongsTo(Thread::class);
+    }
+
 
     // Una respuesta tiene muchas respuestas hijas
     public function repliesChilds()
