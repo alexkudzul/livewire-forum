@@ -8,12 +8,39 @@ use Livewire\Component;
 class ShowReply extends Component
 {
     public Reply $reply;
-    public $body = '';
+    public $body;
     public $is_creating = false;
+    public $is_editing = false;
 
     // $toggle (Magic Actions) = Acceso directo para activar o desactivar propiedades booleanas
     // $refresh (Magic Actions) = Volverá a renderizar el componente sin realizar ninguna acción.
     protected $listeners = ['refresh' => '$refresh'];
+
+    public function updatedIsCreating()
+    {
+        $this->reset('body', 'is_editing');
+    }
+
+    public function updatedIsEditing()
+    {
+        $this->reset('is_creating');
+
+        $this->body = $this->reply->body;
+    }
+
+    public function updateReply()
+    {
+        // Validate
+        $this->validate(['body' => 'required']);
+
+        // Update
+        $this->reply->update([
+            'body' => $this->body
+        ]);
+
+        // Refresh
+        $this->reset('is_editing');
+    }
 
     public function postChild()
     {
