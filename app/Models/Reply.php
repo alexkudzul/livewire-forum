@@ -25,7 +25,6 @@ class Reply extends Model
         return $this->belongsTo(Thread::class);
     }
 
-
     // Una respuesta tiene muchas respuestas hijas
     public function repliesChilds()
     {

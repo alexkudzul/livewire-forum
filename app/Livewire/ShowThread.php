@@ -27,7 +27,12 @@ class ShowThread extends Component
 
     public function render()
     {
-        $replies = $this->thread->replies()->whereNull('reply_id')->get();
+        $replies = $this->thread
+            ->replies()
+            ->whereNull('reply_id')
+            // Carga la relacion user, repliesChilds trae sus propios users, repliesChilds trae sus propios repliesChilds
+            ->with('user', 'repliesChilds.user', 'repliesChilds.repliesChilds')
+            ->get();
 
         return view('livewire.show-thread', compact('replies'));
     }
